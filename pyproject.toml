@@ -1,6 +1,6 @@
 [project]
 name = "nonebot-plugin-saalc"
-version = "0.1.0"
+version = "0.1.1"
 description = "SAA 风格的 alc 兼容插件"
 authors = [
     {name = "Azide", email = "rukuy@qq.com"},

@@ -11,6 +11,8 @@ jobs:
     permissions:
       # write permission is required to create a github release
       contents: write
+      # 重要提示：这个权限对于可信发布是必需的。
+      id-token: write
       # write permission is required for autolabeler
       # otherwise, read permission is required at least
       pull-requests: write
@@ -22,14 +24,6 @@ jobs:
 
       - run: |
           echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-
-      - uses: release-drafter/release-drafter@v6
-        with:
-          name: Release ${{ env.TAG_NAME }}
-          tag: ${{ env.TAG_NAME }}
-          publish: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish PyPI and Github
         run: |
