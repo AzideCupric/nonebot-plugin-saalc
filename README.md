@@ -18,10 +18,10 @@ _✨ 使用 SAA 风格混合发送 SAA 和 alc 的消息 ✨_
 
 saalc 提供[SAA](https://github.com/MountainDash/nonebot-plugin-send-anything-anywhere)自有消息段与 [plugin-alconna.uniseg](https://github.com/nonebot/plugin-alconna) 的兼容。允许同时使用 SAA 和 plugin-alconna.uniseg。
 
-`UniMessageFactory` 继承自 SAA 的 `MessageFactory`，与原有的 `MessageFactory` 用法基本一致，只是可以混合使用 `nonebot_plugin_alconna` 和 `nonebot_plugin_saa` 的消息段类型。
+`UniMessageFactory` 继承自 SAA 的 `MessageFactory`，与原有的 `MessageFactory` 用法基本一致，只是可以混合使用 `nonebot_plugin_alconna` 和 `nonebot_plugin_saa` 的消息段类型（包括SAA不支持的消息段类型）
 
 ```python
-from nonebot_plugin_alconna import Text as AlcText, Image as AlcImage, UniMessage
+from nonebot_plugin_alconna import Text as AlcText, Image as AlcImage, UniMessage, File as AlcFile
 from nonebot_plugin_saa import Text as SaaText, Image as SaaImage
 from nonebot_plugin_saa.ext.uniseg import UniMessageFactory
 
@@ -47,6 +47,15 @@ async def some():
         ]
     )
     umf = UniMessageFactory.from_unimsg(um)
+    await umf.send()
+
+    # 混用 SAA 不支持的 File 消息段
+    umf = UniMessageFactory(
+        [
+            SaaText("alc"),
+            AlcFile(url="https://al.c/file.zip"),
+        ]
+    )
     await umf.send()
 ```
 
