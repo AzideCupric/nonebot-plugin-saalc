@@ -1,12 +1,14 @@
 [project]
-name = "nonebot-plugin-template"
+name = "nonebot-plugin-saalc"
 version = "0.1.0"
-description = "<your_plugin_description>"
+description = "SAA 风格的 alc 兼容插件"
 authors = [
-    {name = "<your_github>", email = "<your_email>"},
+    {name = "Azide", email = "rukuy@qq.com"},
 ]
 dependencies = [
     "nonebot2>=2.3.1",
+    "nonebot-plugin-alconna>=0.46.4",
+    "nonebot-plugin-send-anything-anywhere>=0.6.1",
 ]
 requires-python = ">=3.9"
 readme = "README.md"
@@ -21,7 +23,7 @@ build-backend = "pdm.backend"
 distribution = true
 
 [tool.pdm.build]
-includes = ["src"]
+includes = ["nonebot_plugin_saalc"]
 
 [tool.pdm.dev-dependencies]
 dev = [
@@ -67,5 +69,5 @@ typeCheckingMode = "basic"
 adapters = [
 
 ]
-plugin_dirs = ["src"]
+plugin_dirs = ["nonebot_plugin_saalc"]
 builtin_plugins = []
